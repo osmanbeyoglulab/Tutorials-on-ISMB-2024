@@ -12,6 +12,9 @@
   - [Installation of Conda](#installation-of-conda)
   - [Managing Environment](#managing-environment)
   - [Managing Packages](#managing-packages)
+- [Overview](#overview)
+    - [Basic principles behind TF activity inference methods](#basic-principles-behind-tf-activity-inference-methods)
+    - [Overview of computational TF inference methods based on single cell omics](#overview-of-computational-tf-inference-methods-based-on-single-cell-omics)
 - [Hands-on Tutorial](#hands-on-tutorial)
     - [Session 1 : Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scRNA-seq](#session-1--hands-on-experience-in-applying-tools-and-interpreting-results-using-multiple-tf-activity-inference-methods-using-public-scrna-seq)
     - [Session 2: Hands-on experience in applying tools and interpreting results using TF activity inference methods using public CITE-seq](#session-2-hands-on-experience-in-applying-tools-and-interpreting-results-using-tf-activity-inference-methods-using-public-cite-seq)
@@ -96,6 +99,11 @@ Please download the requirements.txt and use the following commands to install p
   `pip install -r requirements.txt`
 
 Besides the packages listed in requirements.txt,  a few additional packages are required for each session. Please follow the instruction in each session.
+
+##  <a name='o=Overview'></a>Overview
+####   <a name='Basic principles behind TF activity inference methods'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/overview/ISMB 2024 Tutorial.pdf">Basic principles behind TF activity inference methods</a>
+
+####   <a name='Overview of computational TF inference methods based on single cell omics'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/overview/ISMB 2024 Tutorial.pdf">Overview of computational TF inference methods based on single cell omics</a>
 
 
 ##  <a name='Hands-onTutorial'></a>Hands-on Tutorial
