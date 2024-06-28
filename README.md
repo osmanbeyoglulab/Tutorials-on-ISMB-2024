@@ -4,6 +4,13 @@
 
 ##   <a name='TableofContents--omitintoc--'></a>Table of Contents<!-- omit in toc -->
 
+- [Overview](#overview)
+    - [Basic principles behind TF activity inference methods](#basic-principles-behind-tf-activity-inference-methods)
+    - [Overview of computational TF inference methods based on single cell omics](#overview-of-computational-tf-inference-methods-based-on-single-cell-omics)
+- [Hands-on Tutorial](#hands-on-tutorial)
+    - [Session 1 : Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scRNA-seq](#session-1--hands-on-experience-in-applying-tools-and-interpreting-results-using-multiple-tf-activity-inference-methods-using-public-scrna-seq)
+    - [Session 2: Hands-on experience in applying tools and interpreting results using TF activity inference methods using public CITE-seq](#session-2-hands-on-experience-in-applying-tools-and-interpreting-results-using-tf-activity-inference-methods-using-public-cite-seq)
+    - [Session 3: Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scATAC-seq and multiome](#session-3-hands-on-experience-in-applying-tools-and-interpreting-results-using-multiple-tf-activity-inference-methods-using-public-scatac-seq-and-multiome)
 - [Introduction](#introduction)
 - [Learning Objectives for Tutorial](#learning-objectives-for-tutorial)
 - [Intended Audience and Level](#intended-audience-and-level)
@@ -12,13 +19,23 @@
   - [Installation of Conda](#installation-of-conda)
   - [Managing Environment](#managing-environment)
   - [Managing Packages](#managing-packages)
-- [Overview](#overview)
-    - [Basic principles behind TF activity inference methods](#basic-principles-behind-tf-activity-inference-methods)
-    - [Overview of computational TF inference methods based on single cell omics](#overview-of-computational-tf-inference-methods-based-on-single-cell-omics)
-- [Hands-on Tutorial](#hands-on-tutorial)
-    - [Session 1 : Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scRNA-seq](#session-1--hands-on-experience-in-applying-tools-and-interpreting-results-using-multiple-tf-activity-inference-methods-using-public-scrna-seq)
-    - [Session 2: Hands-on experience in applying tools and interpreting results using TF activity inference methods using public CITE-seq](#session-2-hands-on-experience-in-applying-tools-and-interpreting-results-using-tf-activity-inference-methods-using-public-cite-seq)
-    - [Session 3: Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scATAC-seq and multiome](#session-3-hands-on-experience-in-applying-tools-and-interpreting-results-using-multiple-tf-activity-inference-methods-using-public-scatac-seq-and-multiome)
+
+
+##  <a name='o=Overview'></a>Overview
+####   <a name='Basic principles behind TF activity inference methods'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/overview/ISMB 2024 Tutorial.pdf">Basic principles behind TF activity inference methods</a>
+
+####   <a name='Overview of computational TF inference methods based on single cell omics'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/overview/ISMB 2024 Tutorial.pdf">Overview of computational TF inference methods based on single cell omics</a>
+
+
+##  <a name='Hands-onTutorial'></a>Hands-on Tutorial
+####   <a name='Session1:Hands-onexperienceinapplyingtoolsandinterpretingresultsusingmultipleTFactivityinferencemethodsusingpublicscRNA-seq'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/hands-on_tutorial/session-1/stan.ipynb">Session 1 : Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scRNA-seq</a>
+
+
+####  <a name='Session2:Hands-onexperienceinapplyingtoolsandinterpretingresultsusingTFactivityinferencemethodsusingpublicCITE-seq'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/hands-on_tutorial/session-2/pySPaRTAN/pySPaRTAN_tutorial.ipynb">Session 2: Hands-on experience in applying tools and interpreting results using TF activity inference methods using public CITE-seq</a>
+
+  
+
+####  <a name='Session3:Hands-onexperienceinapplyingtoolsandinterpretingresultsusingmultipleTFactivityinferencemethodsusingpublicscATAC-seqandmultiome'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/hands-on_tutorial/session-3/scenicplus.ipynb">Session 3: Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scATAC-seq and multiome</a>
 
 
 
@@ -99,22 +116,4 @@ Please download the requirements.txt and use the following commands to install p
   `pip install -r requirements.txt`
 
 Besides the packages listed in requirements.txt,  a few additional packages are required for each session. Please follow the instruction in each session.
-
-##  <a name='o=Overview'></a>Overview
-####   <a name='Basic principles behind TF activity inference methods'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/overview/ISMB 2024 Tutorial.pdf">Basic principles behind TF activity inference methods</a>
-
-####   <a name='Overview of computational TF inference methods based on single cell omics'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/overview/ISMB 2024 Tutorial.pdf">Overview of computational TF inference methods based on single cell omics</a>
-
-
-##  <a name='Hands-onTutorial'></a>Hands-on Tutorial
-####   <a name='Session1:Hands-onexperienceinapplyingtoolsandinterpretingresultsusingmultipleTFactivityinferencemethodsusingpublicscRNA-seq'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/hands-on_tutorial/session-1/stan.ipynb">Session 1 : Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scRNA-seq</a>
-
-
-####  <a name='Session2:Hands-onexperienceinapplyingtoolsandinterpretingresultsusingTFactivityinferencemethodsusingpublicCITE-seq'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/hands-on_tutorial/session-2/pySPaRTAN/pySPaRTAN_tutorial.ipynb">Session 2: Hands-on experience in applying tools and interpreting results using TF activity inference methods using public CITE-seq</a>
-
-  
-
-####  <a name='Session3:Hands-onexperienceinapplyingtoolsandinterpretingresultsusingmultipleTFactivityinferencemethodsusingpublicscATAC-seqandmultiome'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/hands-on_tutorial/session-3/scenicplus.ipynb">Session 3: Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scATAC-seq and multiome</a>
-
-
 
