@@ -1,6 +1,6 @@
 
 
-# Tutorial: Computational Approaches for Identifying Context-Specific Transcription Factors using Single-Cell Multi-Omics Datasets (ISMB 2024)<!-- omit in toc -->
+# Virtual Tutorial 4: Computational Approaches for Identifying Context-Specific Transcription Factors using Single-Cell Multi-Omics Datasets (ISMB 2024)<!-- omit in toc -->
 
 ##   <a name='TableofContents--omitintoc--'></a>Table of Contents<!-- omit in toc -->
 
