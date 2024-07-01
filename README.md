@@ -28,7 +28,7 @@
 
 
 ##  <a name='Hands-onTutorial'></a>Hands-on Tutorial
-####   <a name='Session1:Hands-onexperienceinapplyingtoolsandinterpretingresultsusingmultipleTFactivityinferencemethodsusingpublicscRNA-seq'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/hands-on_tutorial/session-1/stan.ipynb">Session 1 : Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scRNA-seq</a>
+####   <a name='Session1:Hands-onexperienceinapplyingtoolsandinterpretingresultsusingmultipleTFactivityinferencemethodsusingpublicscRNA-seq'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/hands-on_tutorial/session-1/stan/before_start.ipynb.ipynb">Session 1 : Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scRNA-seq</a>
 
 
 ####  <a name='Session2:Hands-onexperienceinapplyingtoolsandinterpretingresultsusingTFactivityinferencemethodsusingpublicCITE-seq'></a><a href="https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024/blob/main/hands-on_tutorial/session-2/pySPaRTAN/pySPaRTAN_tutorial.ipynb">Session 2: Hands-on experience in applying tools and interpreting results using TF activity inference methods using public CITE-seq</a>
