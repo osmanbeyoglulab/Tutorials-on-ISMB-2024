@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import scanpy as sc
 import seaborn as sns
+import squidpy as sq
 import statsmodels.api as sm
 from scipy.spatial import Delaunay
 from statsmodels.stats.multitest import multipletests
@@ -230,3 +231,17 @@ def plot_heatmap(df_ct_tf, tf_list, ct_list, clip=10):
     ax.set_ylim(-0.5, -0.5+len(y_lab))
     ax.set_xlabel("")
     ax.set_ylabel("")
+
+# ========== ========== ========== ========== ========== ========== ========== ========== ========== ==========
+
+def compute_spatial_expression(adata, df_lr_pair, gene_symbol):
+    sq.gr.spatial_neighbors(adata ,n_rings=1)
+    A = adata.obsp['spatial_connectivities']
+    genes = list(set(df_lr_pair[gene_symbol]))
+    genes = np.intersect1d(adata.var_names, genes).tolist()
+    mat = sc.get.obs_df(adata, genes)
+    mat_neighbor = pd.DataFrame(
+        (A + np.eye(adata.n_obs)).dot(mat)/(1+A.sum(axis=1)),
+        index = mat.index,
+        columns = mat.columns)
+    return mat_neighbor
