@@ -121,8 +121,6 @@ Use the **terminal** for the following steps. For a detailed reference, please r
 
        cd scenicplus
 
-       pip install 
-
        pip install dask==2024.5.0
 
 
