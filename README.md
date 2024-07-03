@@ -77,7 +77,7 @@ Use the **terminal** for the following steps. For a detailed reference, please r
 
         cd Tutorials-on-ISMB-2024
 
-        pip install -r requirements_STAN.txt
+        pip install -r requirements_stan.txt
 
 
 #### Session-2:
@@ -99,7 +99,7 @@ Use the **terminal** for the following steps. For a detailed reference, please r
 
         cd Tutorials-on-ISMB-2024
 
-        pip install -r requirements_pySPaRTAN.txt
+        pip install -r requirements_pyspartan.txt
 
 
 #### Session-3:
@@ -111,15 +111,18 @@ Use the **terminal** for the following steps. For a detailed reference, please r
 2. Activate the environment you just created: 
    
        conda activate scenicplus
+
 3. Install JupyterLab: 
    
        pip install jupyterlab
 
 4. Install required packages
 
-       git clone https://github.com/aertslab/scenicplus<https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgithub.com%2Faertslab%2Fscenicplus&data=05%7C02%7Cosmanbeyogluhu%40pitt.edu%7C8ad8129a1e704ff7136908dc9b1e5fe3%7C9ef9f489e0a04eeb87cc3a526112fd0d%7C1%7C0%7C638555802301295834%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=fit5%2Bo4vBRpe%2BUbrG9bQmEIyACzIurwvZlIEaFD1mIk%3D&reserved=0>`
+       git clone https://github.com/aertslab/scenicplus
 
        cd scenicplus
+
+       pip install .
 
        pip install dask==2024.5.0
 
