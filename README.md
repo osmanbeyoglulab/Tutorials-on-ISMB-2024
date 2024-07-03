@@ -73,6 +73,10 @@ Use the **terminal** for the following steps. For a detailed reference, please r
 
 4. Install required packages
 
+        git clone https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024.git
+
+        cd Tutorials-on-ISMB-2024
+
         pip install -r requirements_STAN.txt
 
 
@@ -90,6 +94,10 @@ Use the **terminal** for the following steps. For a detailed reference, please r
         pip install jupyterlab
 
 4. Install required packages
+
+        git clone https://github.com/osmanbeyoglulab/Tutorials-on-ISMB-2024.git
+
+        cd Tutorials-on-ISMB-2024
 
         pip install -r requirements_pySPaRTAN.txt
 
