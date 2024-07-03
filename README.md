@@ -54,13 +54,13 @@ staller screens. For a detailed reference, please read [this page](https://docs.
 With conda, you can create, export, list, and update environments that have different versions of Python and/or packages installed in them. The JupyterLab, which can run in conda environment,  is a web application for computational documents so that our code can produce rich, interactive output.
 
 
-Below we will demonstrate how to create an conda environment and install JupterLab and packages for each tutorial session on macOS/Linux. 
+Below we will demonstrate how to create an conda environment and install JupterLab and packages for each tutorial session on macOS/Linux. You need to create a separate conda enviroment for each session.
 
 Use the **terminal** for the following steps. For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
 #### Session-1:
 
-1. Create an environment with python 3. You need to create a separate conda enviroment for each session.
+1. Create an environment with python 3. 
    
         conda create --name stan python=3.12 -y
   
@@ -78,7 +78,7 @@ Use the **terminal** for the following steps. For a detailed reference, please r
 
 #### Session-2:
 
-1. Create an environment with python 3. You need to create a separate conda enviroment for each session.
+1. Create an environment with python 3. 
    
         conda create --name pyspartan python=3.12 -y
   
@@ -96,7 +96,7 @@ Use the **terminal** for the following steps. For a detailed reference, please r
 
 #### Session-3:
 
-1. Create an environment with python 3. You need to create a separate conda enviroment for each session.
+1. Create an environment with python 3. 
    
        conda create --name scenicplus python=3.11 -y
   
