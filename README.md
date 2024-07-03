@@ -62,36 +62,36 @@ Use the **terminal** for the following steps. For a detailed reference, please r
 
 1. Create an environment with python 3. You need to create a separate conda enviroment for each session.
    
-   `conda create --name stan python=3.12 -y`
+        conda create --name stan python=3.12 -y
   
 2. Activate the environment you just created: 
    
-   `conda activate stan`
+        conda activate stan
 3. Install JupyterLab: 
    
-    `pip install jupyterlab`
+        pip install jupyterlab
 
 4. Install required packages
 
-  `pip install -r requirements_STAN.txt`
+        pip install -r requirements_STAN.txt
 
 
 #### Session-2:
 
 1. Create an environment with python 3. You need to create a separate conda enviroment for each session.
    
-   `conda create --name pyspartan python=3.12 -y`
+        conda create --name pyspartan python=3.12 -y
   
 2. Activate the environment you just created: 
    
-   `conda activate pyspartan`
+        conda activate pyspartan
 3. Install JupyterLab: 
    
-    `pip install jupyterlab`
+        pip install jupyterlab
 
 4. Install required packages
 
-  `pip install -r requirements_pySPaRTAN.txt`
+        pip install -r requirements_pySPaRTAN.txt
 
 
 #### Session-3:
@@ -102,10 +102,10 @@ Use the **terminal** for the following steps. For a detailed reference, please r
   
 2. Activate the environment you just created: 
    
-        conda activate scenicplus
+       conda activate scenicplus
 3. Install JupyterLab: 
    
-        pip install jupyterlab
+       pip install jupyterlab
 
 4. Install required packages
 
@@ -120,7 +120,7 @@ Use the **terminal** for the following steps. For a detailed reference, please r
 
   After installing the required packages for the tutorial, you can activate JupyterLab and open the Jupyter notebook for each session to run the tutorial. To activate Jupyterab, simply type the following command in the terminal:
 
-    `Jupyter lab`
+      Jupyter lab
 
 
 ##  <a name='Background'></a>Introduction
