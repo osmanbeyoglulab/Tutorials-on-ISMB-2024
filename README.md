@@ -14,7 +14,7 @@
 - [Environment Setup](#environment-setup)
   - [Installation of Conda](#installation-of-conda)
   - [Managing Environment](#managing-environment)
-  - [Managing Packages](#managing-packages)
+ 
 - [Introduction](#introduction)
 - [Learning Objectives for Tutorial](#learning-objectives-for-tutorial)
 - [Intended Audience and Level](#intended-audience-and-level)
@@ -54,31 +54,73 @@ staller screens. For a detailed reference, please read [this page](https://docs.
 With conda, you can create, export, list, and update environments that have different versions of Python and/or packages installed in them. The JupyterLab, which can run in conda environment,  is a web application for computational documents so that our code can produce rich, interactive output.
 
 
-Below we will demonstrate how to create an conda environment and install JupterLab for this tutorial on macOS/Linux. Use the **terminal** for the following steps. For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+Below we will demonstrate how to create an conda environment and install JupterLab and packages for each tutorial session on macOS/Linux. 
 
-Use Mac **terminal** for the following steps:
+Use the **terminal** for the following steps. For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
-1. Create an environment with the latest version of python 3: 
+#### Session-1:
+
+1. Create an environment with python 3. You need to create a separate conda enviroment for each session.
    
-   `conda create --name <my-env> python=3.12`. Replace `<my-env>` with the name of your environment.
+   `conda create --name stan python=3.12 -y`
+  
 2. Activate the environment you just created: 
    
-   `conda activate <my-env>`
+   `conda activate stan`
 3. Install JupyterLab: 
    
     `pip install jupyterlab`
-4. Run JupyterLab: 
+
+4. Install required packages
+
+  `pip install -r requirements_STAN.txt`
+
+
+#### Session-2:
+
+1. Create an environment with python 3. You need to create a separate conda enviroment for each session.
    
-   `jupyter lab` 
+   `conda create --name pyspartan python=3.12 -y`
+  
+2. Activate the environment you just created: 
+   
+   `conda activate pyspartan`
+3. Install JupyterLab: 
+   
+    `pip install jupyterlab`
 
-###  <a name='ManagingPackages'></a>Managing Packages
+4. Install required packages
 
-Please download the requirements.txt and use the following commands to install python packages required for running the tutorials
+  `pip install -r requirements_pySPaRTAN.txt`
 
-  `pip install -r requirements.txt`
 
-Besides the packages listed in requirements.txt,  a few additional packages are required for each session. Please follow the instruction in each session.
+#### Session-3:
 
+1. Create an environment with python 3. You need to create a separate conda enviroment for each session.
+   
+       conda create --name scenicplus python=3.11 -y
+  
+2. Activate the environment you just created: 
+   
+        conda activate scenicplus
+3. Install JupyterLab: 
+   
+        pip install jupyterlab
+
+4. Install required packages
+
+       git clone https://github.com/aertslab/scenicplus<https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgithub.com%2Faertslab%2Fscenicplus&data=05%7C02%7Cosmanbeyogluhu%40pitt.edu%7C8ad8129a1e704ff7136908dc9b1e5fe3%7C9ef9f489e0a04eeb87cc3a526112fd0d%7C1%7C0%7C638555802301295834%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=fit5%2Bo4vBRpe%2BUbrG9bQmEIyACzIurwvZlIEaFD1mIk%3D&reserved=0>`
+
+       cd scenicplus
+
+       pip install 
+
+       pip install dask==2024.5.0
+
+
+  After installing the required packages for the tutorial, you can activate JupyterLab and open the Jupyter notebook for each session to run the tutorial. To activate Jupyterab, simply type the following command in the terminal:
+
+    `Jupyter lab`
 
 
 ##  <a name='Background'></a>Introduction
