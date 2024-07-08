@@ -170,3 +170,5 @@ Time  | Tutorial
 •Linan Zhang, April Sagan, Bin Qin, Baoli Hu, Hatice Ulku Osmanbeyoglu. STAN, a computational framework for inferring spatially informed transcription factor activity across cellular contexts: bioRxiv 2024.06.26.600782; doi: https://doi.org/10.1101/2024.06.26.600782
 
 •Xiaojun Ma, Ashwin Somasundaram, Zengbiao Qi, Douglas J Hartman, Harinder Singh, Hatice Ulku Osmanbeyoglu, SPaRTAN, a computational framework for linking cell-surface receptors to transcriptional regulators, Nucleic Acids Research, Volume 49, Issue 17, 27 September 2021, Pages 9633–9647, https://doi.org/10.1093/nar/gkab745
+
+•Kim, D., Tran, A., Kim, H.J. et al. Gene regulatory network reconstruction: harnessing the power of single-cell multi-omic data. npj Syst Biol Appl 9, 51 (2023). https://doi.org/10.1038/s41540-023-00312-6
