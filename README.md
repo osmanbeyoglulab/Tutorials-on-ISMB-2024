@@ -166,5 +166,8 @@ Time  | Tutorial
 `17:10` | Hands-on experience in applying tools and interpreting results using multiple TF activity inference methods using public scATAC-seq and multiome <br />
 `17:55` |Discuss current bottlenecks, gaps in the field, and opportunities for future work <br />
 
+Stan framework in session-1 is available at https://www.biorxiv.org/content/10.1101/2024.06.26.600782v1
+
+SPaRTAN framework in session-2 is available at https://academic.oup.com/nar/article/49/17/9633/6368058?login=true
 
 
