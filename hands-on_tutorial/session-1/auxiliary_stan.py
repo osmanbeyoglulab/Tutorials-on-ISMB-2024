@@ -231,6 +231,7 @@ def plot_heatmap(df_ct_tf, tf_list, ct_list, clip=10):
     ax.set_ylim(-0.5, -0.5+len(y_lab))
     ax.set_xlabel("")
     ax.set_ylabel("")
+    plt.close(1)
 
 # ========== ========== ========== ========== ========== ========== ========== ========== ========== ==========
 
