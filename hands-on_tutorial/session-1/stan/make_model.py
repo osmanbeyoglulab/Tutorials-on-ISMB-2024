@@ -1,12 +1,12 @@
 import numpy as np
 import pandas as pd
 import scanpy as sc
-import time
+import random, time
 from scipy.stats import spearmanr, pearsonr
 
 
 def assign_folds(adata, n_folds=5, train_percent=None, random_seed=0):
-    np.random.seed(random_seed)
+    random.seed(random_seed)
     if train_percent is not None:
         adata.var["fold"]=np.random.uniform(0,1, adata.n_vars)<train_percent
     else:
