@@ -92,14 +92,18 @@ class pySPaRTAN:
 
     Methods
     -------
+    __init__(self, lambdas, rsL2s, spectrums, corrteyp, n_fold)
+        initiate the class object 
+    
     fit(self, D, P, Y)
         cross validate and train a SPaRTAN model
 
+    _cv(self, D, P, Y)
+         use cross validation to determine the best hyperparameters
+    
     _fit(self, D, P, Y,lamda=None, rsL2=None,  spectrum=None )
          train a SPaRTAN model with specific hyperparameters
-         
-    _cv(D, P, Y)
-         cross validation to determine the best hyperparameters
+     
          
     _ar_model2w(self):
         converts a trained model to intermidiat vaiable W
@@ -110,7 +114,7 @@ class pySPaRTAN:
     predict(self, P_test=None):
         predict target gene expression
 
-    get_corr(self, Y_pred, Y_test, plot=False):
+    get_pred_score(self, Y_pred, Y_test, plot=False):
         get the correlation between predicted Y_pred and Y_test
 
     get_W(self):
@@ -121,6 +125,9 @@ class pySPaRTAN:
 
     get_projTF(self, P=None):
         get projected TF activity
+        
+    get_tf_protein_cor(self, P=None)
+        get pair-wise correlations between protein and inferred TF activity
 
     """
     
@@ -236,30 +243,7 @@ class pySPaRTAN:
 
     def _fit(self, D, P, Y,lamda=None, rsL2=None,  spectrum=None ):
 
-        """ trains a SPaRTAN model
-
-        Parameters
-        ----------
-        D : array of shape (N, Q)
-            The data matrix with N genes and Q TFs
-
-        P : array of shape (M, S)
-            The data matrix with M cells and S proteins
-
-        Y : array of shape (N, M)
-            The data matrix with N genes and M cells
-
-        lamda : float > 0, default=0.001
-            LASSO regularization for linear regression
-
-        rsL2 : float > 0, default=0.001
-            ridge regularization for linear regression
-
-        corrtype: string, default='spearman'
-            correlation type used to evaluate the performance
-
-        """
-        
+          
         if lamda is None:
             lamda = self.lambda_best
         
@@ -344,12 +328,7 @@ class pySPaRTAN:
         return ww
 
     def _ar_reconstruction(self, pred_test=None):
-        """ reconstruction function
-        Parameters
-        ----------
-        pred_test: prediction on test data
-
-        """
+ 
         A = self.Y.T @ pred_test
         B = scipy.linalg.orth(self.Y)
         cm = scipy.linalg.lstsq(B, self.Y)[0]
@@ -358,18 +337,7 @@ class pySPaRTAN:
         return pred
 
     def predict(self, P_test):
-        """ predict target gene expression
 
-        Parameters
-        ----------
-        P_test: Protein expression on test data
-
-        Returns
-        -------
-        Y_pred: array of shape (C', N)
-                The predicted Y matrix on test data set which has C' cells and N genes
-
-        """
         
         Pv_test = P_test.values
         
@@ -387,22 +355,7 @@ class pySPaRTAN:
    
 
     def get_pred_score(self, P_test, Y_test, plot=False):
-        """ get the correlation between predicted Y_pred and Y_test
 
-        Parameters
-        ----------
-        
-        Y_test: array of shape (C',N)
-               gene expression test data with C' cells and N genes
-        plot: whether to plot the correlation between Y_pred and Y_test, default is False
-
-
-        Returns
-        -------
-        corr: float 0 <= value <= 1
-              spearman/pearson corrlatioin between flattened self.Y_pred and Y_test
-
-        """
         
         Y_pred = self.predict(P_test)
         
@@ -425,19 +378,6 @@ class pySPaRTAN:
         return self.W
 
     def get_projP(self, Y=None):
-        """ get projected protein expression
-
-        Parameters
-        ----------
-        Y:  array of shape (optional, default is (N, M) )
-            input gene expression with N genes and M cells
-
-        Returns
-        -------
-        projP: array of shape (M, S)
-               projected protein expression with M cells and S proteins
-
-        """
 
         if Y is None:
             Yv = self.Y
@@ -450,19 +390,6 @@ class pySPaRTAN:
         return (pd.DataFrame(projP, index=Y.index, columns=self.protein_name))
 
     def get_projTF(self, P=None):
-        
-        """ get projected TF activity
-        Parameters
-        ----------
-        P: array of shape (optional, default is (M, S) )
-           input protein expression with M cells and S proteins
-
-        Returns
-        -------
-        projTF:  array of shape (Q, M)
-            projected TF activities with Q TFs and M cells
-
-        """
         
         
         if P is None:
@@ -480,19 +407,7 @@ class pySPaRTAN:
     
     
     def get_tf_protein_cor(self, P=None):
-        '''
-        Finds correlation between TFs and surface proteins
-        Parameters
-        ----------
-        P : array_like, optional
-            Protein expression matrix to use for correlations, if different from training data.
 
-        Returns
-        -------
-        X : pd.DataFrame
-            Correlation matrix between TFs and surface proteins.
-        '''
-        
         
         if P is None:
             Pv = self.P
@@ -500,13 +415,7 @@ class pySPaRTAN:
  
         tf=self.get_projTF(P)
 
-        # X=scipy.stats.pearsonr(
-        #     tf_activity,
-        #     P,
-        #     axis=0)[0]
-
-
-
+ 
         X=scipy.stats.zscore(tf.values, axis=0).T.dot(
             scipy.stats.zscore(P, axis=0)
         )/P.shape[0]
