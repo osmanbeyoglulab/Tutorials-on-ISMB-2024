@@ -127,7 +127,7 @@ class pySPaRTAN:
         get projected TF activity
         
     get_tf_protein_cor(self, P=None)
-        get pair-wise correlations between protein and inferred TF activity
+        get pair-wise correlations between inferred TF activity and protein expression
 
     """
     
