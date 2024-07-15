@@ -140,7 +140,15 @@ class pySPaRTAN:
   
         self.corrtype = corrtype
         self.n_fold=n_fold
+       
+    def fit(self, D, P, Y):
         
+    
+        self._cv(D, P, Y)
+        
+        self._fit(D, P, Y)
+            
+       
     def  _cv(self, D, P, Y):
         
       
@@ -224,8 +232,11 @@ class pySPaRTAN:
     
         return(max_corr)
     
-    def fit(self, D, P, Y):
-        
+    
+
+    def _fit(self, D, P, Y,lamda=None, rsL2=None,  spectrum=None ):
+
+
         self.D = D.values.astype('double')
         self.P = P.values.astype('double')
         self.Y = Y.values.T.astype('double')
@@ -236,14 +247,7 @@ class pySPaRTAN:
         self.protein_name = list(P.columns)
         self.cell_name = list(P.index)
         
-        self._cv(D, P, Y)
         
-        self._fit(D, P, Y)
-        
-
-    def _fit(self, D, P, Y,lamda=None, rsL2=None,  spectrum=None ):
-
-          
         if lamda is None:
             lamda = self.lambda_best
         
@@ -256,11 +260,15 @@ class pySPaRTAN:
                 
         spectrumA = 1
         spectrumB = spectrum
+        
+        Dv = self.D
+        Pv = self.P
+        Yv = self.Y
        
         # transformation
-        A = self.Y.T @ self.D
-        B = self.P.T
-        Y = self.Y.T @ self.Y
+        A = Yv.T @ Dv
+        B = Pv.T
+        Y = Yv.T @ Yv
 
         # SVD(A) SVD(B)
         UA, SA, VhA = np.linalg.svd(A)
@@ -282,7 +290,7 @@ class pySPaRTAN:
         Sb = SB[:db]
         Vb = VB[:, :db]
 
-        Yv = (Y.T).flatten()
+        Yt = (Y.T).flatten()
 
         Vb = Vb.copy(order='C')
         Ua = Ua.copy(order='C')
@@ -294,19 +302,20 @@ class pySPaRTAN:
         diag = np.array(cidex, dtype=np.int32).flatten()
 
         # make it c-like contiguous array
-        Yv = Yv.copy(order='C')
+        Yt = Yt.copy(order='C')
         diag = diag.copy(order='C')
 
-        L, Yv = krnP.removeDiagC(L, Yv, diag)
+        
+        L, Yt = krnP.removeDiagC(L, Yt, diag)
 
         opts = dict()
         opts['rsL2'] = rsL2
 
-        # reshape Yv to 2darry
-        Yv = Yv.reshape(Yv.shape[0], 1)
-        beta, b = leastR.LeastR(L, Yv, lamda, opts)
+        # reshape Yt to 2darry
+        Yt = Yt.reshape(Yt.shape[0], 1)
+        beta, b = leastR.LeastR(L, Yt, lamda, opts)
 
-        del L, Yv
+        del L, Yt
         gc.collect()
 
         self.beta = beta
