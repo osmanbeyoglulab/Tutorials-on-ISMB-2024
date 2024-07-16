@@ -45,16 +45,15 @@
 3. Install the installer:
 	- Windows: Double-click the `.exe` file. Follow the instructions on the screen. For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html#installing-on-windows).
 	- macOS: double-click the `.pkg` file. Follow the instructions on the screen.For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html#installing-on-macos).
-	- Linux: In your terminal window, run: `bash Anaconda-latest-Linux-x86_64.sh`. Follow the prompts on the inConda is an open-source tool that provides package, dependency, and environment management for any programming language. To install conda, we must first pick the right installer for us. Below we will demonstrate how to install **Anaconda Distribution**, a full featured installer of Conda.
-staller screens. For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html#installing-on-linux).
+	- Linux: In your terminal window, run: `bash Anaconda-latest-Linux-x86_64.sh`. Follow the prompts on the screen. For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html#installing-on-linux).
 
 
 ###  <a name='ManagingEnvironment'></a>Managing Environment
 
-With conda, you can create, export, list, and update environments that have different versions of Python and/or packages installed in them. The JupyterLab, which can run in conda environment,  is a web application for computational documents so that our code can produce rich, interactive output.
+With conda, you can create, export, list, and update environments that have different versions of Python and/or packages installed in them. The JupyterLab, which can run in Conda environment,  is a web application for computational documents so that our code can produce rich, interactive output.
 
 
-Below we will demonstrate how to create an conda environment and install JupterLab and packages for each tutorial session on macOS/Linux. You need to create a separate conda enviroment for each session.
+Below we will demonstrate how to create a Conda environment and install JupyterLab and packages for each tutorial session on macOS/Linux. You need to create a separate Conda environment for each session.
 
 Use the **terminal** for the following steps. For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
@@ -127,7 +126,7 @@ Use the **terminal** for the following steps. For a detailed reference, please r
        pip install dask==2024.5.0
 
 
-  After installing the required packages for the tutorial, activate the corresponding environment you created, run JupyterLab and open the Jupyter notebook in each session subfolder to start the tutorial. To launch JupyterLab, enter the following command in your terminal:
+After installing the required packages for the tutorial, activate the corresponding environment you created, run JupyterLab and open the Jupyter notebook in each session subfolder to start the tutorial. To launch JupyterLab, enter the following command in your terminal:
 
       Jupyter lab
 
