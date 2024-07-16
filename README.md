@@ -127,7 +127,7 @@ Use the **terminal** for the following steps. For a detailed reference, please r
        pip install dask==2024.5.0
 
 
-  After installing the required packages for the tutorial, you can activate JupyterLab and open the Jupyter notebook for each session to run the tutorial. To activate Jupyterab, simply type the following command in the terminal:
+  After installing the required packages for the tutorial, activate the corresponding environment you created, run JupyterLab and open the Jupyter notebook in each session subfolder to start the tutorial. To launch JupyterLab, enter the following command in your terminal:
 
       Jupyter lab
 
