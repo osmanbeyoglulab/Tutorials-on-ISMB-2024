@@ -44,13 +44,13 @@
 2. [Verify your installer hashes using SHA-256 checksums.](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html#hash-verification)
 3. Install the installer:
 	- Windows: Double-click the `.exe` file. Follow the instructions on the screen. For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html#installing-on-windows).
-	- macOS: double-click the `.pkg` file. Follow the instructions on the screen.For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html#installing-on-macos).
+	- macOS: double-click the `.pkg` file. Follow the instructions on the screen. For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html#installing-on-macos).
 	- Linux: In your terminal window, run: `bash Anaconda-latest-Linux-x86_64.sh`. Follow the prompts on the screen. For a detailed reference, please read [this page](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html#installing-on-linux).
 
 
 ###  <a name='ManagingEnvironment'></a>Managing Environment
 
-With conda, you can create, export, list, and update environments that have different versions of Python and/or packages installed in them. The JupyterLab, which can run in Conda environment,  is a web application for computational documents so that our code can produce rich, interactive output.
+With Conda, you can create, export, list, and update environments that have different versions of Python and/or packages installed in them. The JupyterLab, which can run in Conda environment,  is a web application for computational documents so that our code can produce rich, interactive output.
 
 
 Below we will demonstrate how to create a Conda environment and install JupyterLab and packages for each tutorial session on macOS/Linux. You need to create a separate Conda environment for each session.
