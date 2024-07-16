@@ -1,90 +1,24 @@
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# =============================================================================
-# Created By  : Xiaojun Ma
-# Created Date: Mar 18 10:54:00 PDT 2020
-# =============================================================================
 """
-This script contains the major class of SPaRTAN model and its dependencies.
+class of SPaRTAN model.
 
-This script requires numpy, Scipy, matplotlib to be installed within the Python
-environment you are running this script in
+This script requires Pandas, numpy, Scipy, matplotlib and scikit-learn to be installed within the Conda environment
 
 This script requires Cython modules present in the current directory
 
-This file contains the following classes and functions
-
-    class Timer: a class to convert time period in seconds to the format of h:m:s
-
-    class pySPaRTAN: The major class for SPaRTAN, establishing an interaction matrix between
-    surface proteins (P) and TFs (D) that predict target gene expression (Y).
-
-    function normalize_column(): perform l2 normalization column-wize of given matrix
 
 """
+
 import numpy as np
 import pandas as pd
 import cythKronPlus as krnP
 import cythLeastR as leastR
 import scipy.linalg
-import time
 import gc
 import matplotlib.pyplot as plt
 from scipy import stats
 from sklearn.model_selection import KFold
 
-class Timer:
-    """ a class to convert time in seconds to the format of h:m:s
-
-    Methods
-    -------
-    def __init__(self):
-        initiate a timer
-
-    def restart(self):
-        restart a timer
-
-    def get_time_hhmmss(self):
-        return the period = end_time - start_time in (h, m, s) format
-
-    """
-
-    def __init__(self):
-        # initiate a timer
-        self.start = time.time()
-
-    def restart(self):
-        # restart a timer
-        self.start = time.time()
-
-    def get_time_hhmmss(self):
-        # return the period = end_time - start_time
-        # in (h, m, s) format
-        end = time.time()
-        m, s = divmod(end - self.start, 60)
-        h, m = divmod(m, 60)
-        time_str = "%02d:%02d:%02d" % (h, m, s)
-        return time_str
-
-
-def normalize_column(A, T=0):
-    """ perform l2 normalization column-wize of given matrix
-
-    Parameters:
-        A : the matrix that works on
-        T : switch of column-wize and row-wize.
-            T=0: column-wize
-            T=1: row-wize
-
-    """
-    if (T == 0):
-        return np.divide(A, np.sqrt(np.sum(A**2, 0)))
-    else:
-        At = np.transpose(A)
-        return np.transpose(np.divide(At, np.sqrt(np.sum(At**2, 0))))
-
-
+    
 class pySPaRTAN:
     """
     The major class for SPaRTAN, establishing an interaction matrix between
@@ -93,47 +27,69 @@ class pySPaRTAN:
     Methods
     -------
     __init__(self, lambdas, rsL2s, spectrums, corrteyp, n_fold)
-        initiate the class object 
+        Initiate the class object 
     
     fit(self, D, P, Y)
-        cross validate and train a SPaRTAN model
+        Cross validates and train a SPaRTAN model
 
     _cv(self, D, P, Y)
-         use cross validation to determine the best hyperparameters
+         Determine the optimal hyperparameters with cross-validation and grid search
     
-    _fit(self, D, P, Y,lamda=None, rsL2=None,  spectrum=None )
+    _fit(self, D, P, Y, lamda=None, rsL2=None,  spectrum=None )
          train a SPaRTAN model with specific hyperparameters
      
          
     _ar_model2w(self):
-        converts a trained model to intermidiat vaiable W
+        Convert trained model to interaction matrix W
 
     _ar_reconstruction(self, pred_test=None):
-        reconstruction function
+        Reconstruct the prediction
 
     predict(self, P_test=None):
-        predict target gene expression
+        Predict gene expression given protein expression.
 
     get_pred_score(self, Y_pred, Y_test, plot=False):
-        get the correlation between predicted Y_pred and Y_test
+        Compute the correlation between predicted Y_pred and Y_test
 
     get_W(self):
-        get coefficient matrix
+        Extract coefficient matrix W
 
     get_projP(self, Y=None):
-        get projected protein expression
+        Obtain projected protein expression
 
     get_projTF(self, P=None):
-        get projected TF activity
+        Obtain projected TF activity
         
     get_tf_protein_cor(self, P=None)
-        get pair-wise correlations between inferred TF activity and protein expression
+        Compute pair-wise correlations between inferred TF activity and protein expression
 
     """
     
     def __init__(self, lambdas=None, rsL2s=None,  spectrums=None, corrtype='pearson', n_fold=5):
         
-       
+        """
+        Function:
+        ----------
+        pySPaRTAN initiation
+        
+        Parameters:
+        ----------
+        lambdas: list of float numbers
+            hyperparameter of pySPaRTAN to tune
+        rsL2s: list of float numbers
+            hyperparameter of pySPaRTAN to tune
+        spectrums: list of float numbers, default=[0.7]
+            hyperparameter of pySPaRTAN to tune, needs less tune, fixed to 0.7
+        corrtype: string
+            type of correlation method used to calculate correlation between predicted and true gene expression
+        n_fold: integer
+            cross-validation fold
+            
+        Returns
+        -------
+        None.
+        
+        """
         self.rsL2s = rsL2s
         self.lambdas = lambdas
         self.spectrums = spectrums
@@ -143,6 +99,26 @@ class pySPaRTAN:
        
     def fit(self, D, P, Y):
         
+        """
+        Function:
+        ----------
+        User interface for training the model
+        
+        Parameters:
+        ----------
+        D: Pandas dataframe
+            gene-tf regulation with gene X TF 
+        P: Pandas dataframe
+            Protein expression with cell X protein
+        Y: Pandas dataframe
+            Gene expression with cell X gene
+            
+            
+        Returns
+        -------
+        None.
+        
+        """
     
         self._cv(D, P, Y)
         
@@ -151,8 +127,27 @@ class pySPaRTAN:
        
     def  _cv(self, D, P, Y):
         
-      
-       
+        """
+        Function:
+        ----------
+        Determine the optimal hyperparameters with cross-validation and grid search. Only used by model itself.
+        
+        Parameters:
+        ----------
+        D: Pandas dataframe
+            gene-tf regulation with gene X TF 
+        P: Pandas dataframe
+            Protein expression with cell X protein
+        Y: Pandas dataframe
+            Gene expression with cell X gene
+            
+        Returns
+        -------
+        None.
+        
+        """
+
+            
         lensps = len(self.spectrums)
         lenlambdas = len(self.lambdas)
         lenrsL2s = len(self.rsL2s)
@@ -235,7 +230,32 @@ class pySPaRTAN:
     
 
     def _fit(self, D, P, Y,lamda=None, rsL2=None,  spectrum=None ):
-
+        
+        """
+        Function:
+        ----------
+        Train pySPaRTAN model with specific data and hyperparameters. Only used by model itself.
+        
+        Parameters:
+        ----------
+        D: Pandas dataframe
+            gene-tf regulation with gene X TF 
+        P: Pandas dataframe
+            Protein expression with cell X protein
+        Y: Pandas dataframe
+            Gene expression with cell X gene
+        lamda: float
+            hyperparameter passed in to train the model
+        rsL2: float
+            hyperparameter passed in to train the model
+        spectrum: float
+            hyperparameter passed in to train the model
+            
+        Returns
+        -------
+        None.
+        
+        """
 
         self.D = D.values.astype('double')
         self.P = P.values.astype('double')
@@ -327,7 +347,23 @@ class pySPaRTAN:
         self.Vb = Vb
 
     def _ar_model2w(self):
-        # converts a trained model to W
+        
+        """
+        Function:
+        ----------
+        Convert a trained model to W. Only used by model itself.
+        
+        Parameters:
+        ----------
+        None
+            
+        Returns
+        -------
+        ww: 2D array with the format as TF X protein
+            coefficient matrix between transcription factor and protein expression
+        
+        """
+        
         m1 = self.Va
         m2 = np.linalg.pinv(self.Sa)
         m3 = self.beta.reshape(self.Va.shape[1], self.Ub.shape[1], order="F")
@@ -337,7 +373,24 @@ class pySPaRTAN:
         return ww
 
     def _ar_reconstruction(self, pred_test=None):
- 
+        
+        """
+        Function:
+        ----------
+        Reconstruct the prediction. Only used by model itself
+        
+        Parameters:
+        ----------
+        pred_test: 2D array with the format as cell X gene
+            predicted gene expression before reconstruction
+            
+        Returns
+        -------
+        pred: 2D array with the format as gene X cell
+            Reconstructed gene expression which the final state of predicted gene expression
+        
+        """
+        
         A = self.Y.T @ pred_test
         B = scipy.linalg.orth(self.Y)
         cm = scipy.linalg.lstsq(B, self.Y)[0]
@@ -347,6 +400,22 @@ class pySPaRTAN:
 
     def predict(self, P_test):
 
+        """
+        Function:
+        ----------
+        Predict gene expression given protein expression.
+        
+        Parameters:
+        ----------
+        P_test: Pandas dataframe with the format as cell X protein
+            Input protein expression to test the prediction of gene expression
+            
+        Returns
+        -------
+        Y_pred: Pandas dataframe with the format as cell X gene
+            Predicted gene expression
+        
+        """
         
         Pv_test = P_test.values
         
@@ -365,6 +434,24 @@ class pySPaRTAN:
 
     def get_pred_score(self, P_test, Y_test, plot=False):
 
+        """
+        Function:
+        ----------
+        Compute the correlation between predicted and true gene expression with the method saved in self.corrtype
+        
+        Parameters:
+        ----------
+        P_test: Pandas dataframe with the format as cell X protein
+            Input protein expression to test the prediction of gene expression
+        Y_test: Pandas dataframe with the format as cell X gene
+            True gene expression 
+            
+        Returns
+        -------
+        corr: float
+            correlation between predicted and true gene expression
+        
+        """
         
         Y_pred = self.predict(P_test)
         
@@ -381,13 +468,46 @@ class pySPaRTAN:
         return corr
 
     def get_W(self):
-        # get coefficient matrix
-
+        
+        """
+        Function:
+        ----------
+        Get coefficient dataframe between protein expression and transcription factor
+        
+        Parameters:
+        ----------
+        None
+        
+        Returns
+        -------
+        self.W: Pandas dataframe with the format as TF X protein
+             coefficient matrix between transcription factor and protein expression   
+        
+        """
         self.W = self._ar_model2w()
-        return self.W
+        W = pd.DataFrame(self.W, index=self.TF_name, columns=self.protein_name)
+        
+        return(W)
 
-    def get_projP(self, Y=None):
+    def get_projP(self, Y):
 
+        """
+        Function:
+        ----------
+        Obtains the predicted protein expression
+        
+        Parameters:
+        ----------
+        Y: Pandas dataframe with the format as cell X gene
+            Input gene expression to obtain predicted protein expression
+        
+        Returns
+        -------
+        projP: Pandas dataframe with the format as cell X protein
+             predicted protein expression
+        
+        """
+     
         if Y is None:
             Yv = self.Y
         else:
@@ -396,10 +516,28 @@ class pySPaRTAN:
         W = self._ar_model2w()
         
         projP = (Yv.T @ self.D @ W).T
-        return (pd.DataFrame(projP, index=Y.index, columns=self.protein_name))
-
-    def get_projTF(self, P=None):
+        projP = pd.DataFrame(projP, index=Y.index, columns=self.protein_name)
         
+        return (projP)
+
+    def get_projTF(self, P):
+        
+        """
+        Function:
+        ----------
+        Obtains the predicted transcription factor activity
+        
+        Parameters:
+        ----------
+        P: Pandas dataframe with the format as cell X protein
+            Input protein expression to obtain predicted TF
+        
+        Returns
+        -------
+        projTF: Pandas dataframe with the format as cell X TF
+             predicted transcription factor activity
+        
+        """
         
         if P is None:
             Pv = self.P
@@ -417,6 +555,22 @@ class pySPaRTAN:
     
     def get_tf_protein_cor(self, P=None):
 
+        """
+        Function:
+        ----------
+        Calculate pair-wise correlation(similarity) between predicted TF activity and protein expression
+        
+        Parameters:
+        ----------
+        P: Pandas dataframe with the format as cell X protein
+            Input protein expression to obtain predicted TF
+        
+        Returns
+        -------
+        score: Pandas dataframe with the format as TF X protein
+             correlation (similarity) between predicted TF activity and protein expression
+        
+        """
         
         if P is None:
             Pv = self.P
@@ -430,10 +584,10 @@ class pySPaRTAN:
         )/P.shape[0]
 
         if self.TF_name is not None and self.protein_name is not None:
-            X=pd.DataFrame(
+            score=pd.DataFrame(
                 X,
                 index=self.TF_name,
                 columns=self.protein_name
             )
 
-        return X
+        return(score)
