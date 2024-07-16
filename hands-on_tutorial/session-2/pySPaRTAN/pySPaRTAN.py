@@ -20,6 +20,7 @@ from sklearn.model_selection import KFold
 
     
 class pySPaRTAN:
+    
     """
     The major class for SPaRTAN, establishing an interaction matrix between
     surface proteins (P) and TFs (D) that predicts target gene expression (Y).
