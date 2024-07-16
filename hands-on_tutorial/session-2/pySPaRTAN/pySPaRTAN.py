@@ -4,8 +4,6 @@ class of SPaRTAN model.
 This script requires Pandas, numpy, Scipy, matplotlib and scikit-learn to be installed within the running environment
 
 This script requires Cython modules present in the current directory
-
-
 """
 
 import numpy as np
