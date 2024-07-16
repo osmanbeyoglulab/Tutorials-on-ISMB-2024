@@ -20,7 +20,6 @@ from sklearn.model_selection import KFold
 
     
 class pySPaRTAN:
-    
     """
     The major class for SPaRTAN, establishing an interaction matrix between
     surface proteins (P) and TFs (D) that predicts target gene expression (Y).
@@ -63,7 +62,6 @@ class pySPaRTAN:
         
     get_tf_protein_cor(self, P=None)
         Compute pair-wise correlations between inferred TF activity and protein expression
-
     """
     
     def __init__(self, lambdas=None, rsL2s=None,  spectrums=None, corrtype='pearson', n_fold=5):
@@ -89,8 +87,8 @@ class pySPaRTAN:
         Returns
         -------
         None.
-        
         """
+
         self.rsL2s = rsL2s
         self.lambdas = lambdas
         self.spectrums = spectrums
@@ -118,7 +116,6 @@ class pySPaRTAN:
         Returns
         -------
         None.
-        
         """
     
         self._cv(D, P, Y)
@@ -145,10 +142,8 @@ class pySPaRTAN:
         Returns
         -------
         None.
-        
         """
 
-            
         lensps = len(self.spectrums)
         lenlambdas = len(self.lambdas)
         lenrsL2s = len(self.rsL2s)
@@ -160,23 +155,23 @@ class pySPaRTAN:
         for s in range(lensps) :
             for l in range(lenlambdas):
                 for r in range(lenrsL2s):
+                    
+                    # cross-validation
                     print(
                         "cross validating  spectrum={}, lambda={}, rsL2={}".format(
                             self.spectrums[s], self.lambdas[l] ,self.rsL2s[r]
                         )
                     )
+
                     Y_pred_all = Y * 0
-
-
-                    #added some parameters
+                    
                     kf = KFold(n_splits = self.n_fold, shuffle = True, random_state = 2)
                     result = next(kf.split(P), None)
-
-                  
+              
                     corrs = 0
                     for f in range(self.n_fold):
 
-                         # split the data into train and test set
+                        # split the data into train and test set
                         P_train, P_vali = P.iloc[result[0], :], P.iloc[result[1], :]
                         Y_train, Y_vali = Y.iloc[result[0], :], Y.iloc[result[1], :]
 
@@ -204,9 +199,6 @@ class pySPaRTAN:
                     corr_all[s, l, r] = corr
 
 
-        # outfile_corr = os.path.join(outpath,"cvPerform.txt")
-        # output_corr(outfile_corr, corr_all)
-        # logMem("Cross validation done", memfile)
 
         # retrive the best parameters
         max_s, max_l, max_r = np.unravel_index(
@@ -223,9 +215,6 @@ class pySPaRTAN:
         max_corr = corr_all[max_s, max_l, max_r]
         print(f"The cross validation performance is {round(max_corr, 3)} ")
 
-        
-
-    
         return(max_corr)
     
     
@@ -255,7 +244,6 @@ class pySPaRTAN:
         Returns
         -------
         None.
-        
         """
 
         self.D = D.values.astype('double')
@@ -362,7 +350,6 @@ class pySPaRTAN:
         -------
         ww: 2D array with the format as TF X protein
             coefficient matrix between transcription factor and protein expression
-        
         """
         
         m1 = self.Va
@@ -389,7 +376,6 @@ class pySPaRTAN:
         -------
         pred: 2D array with the format as gene X cell
             Reconstructed gene expression which the final state of predicted gene expression
-        
         """
         
         A = self.Y.T @ pred_test
@@ -415,7 +401,6 @@ class pySPaRTAN:
         -------
         Y_pred: Pandas dataframe with the format as cell X gene
             Predicted gene expression
-        
         """
         
         Pv_test = P_test.values
@@ -451,7 +436,6 @@ class pySPaRTAN:
         -------
         corr: float
             correlation between predicted and true gene expression
-        
         """
         
         Y_pred = self.predict(P_test)
@@ -483,8 +467,8 @@ class pySPaRTAN:
         -------
         self.W: Pandas dataframe with the format as TF X protein
              coefficient matrix between transcription factor and protein expression   
-        
         """
+
         self.W = self._ar_model2w()
         W = pd.DataFrame(self.W, index=self.TF_name, columns=self.protein_name)
         
@@ -506,7 +490,6 @@ class pySPaRTAN:
         -------
         projP: Pandas dataframe with the format as cell X protein
              predicted protein expression
-        
         """
      
         if Y is None:
@@ -537,7 +520,6 @@ class pySPaRTAN:
         -------
         projTF: Pandas dataframe with the format as cell X TF
              predicted transcription factor activity
-        
         """
         
         if P is None:
@@ -570,7 +552,6 @@ class pySPaRTAN:
         -------
         score: Pandas dataframe with the format as TF X protein
              correlation (similarity) between predicted TF activity and protein expression
-        
         """
         
         if P is None:
